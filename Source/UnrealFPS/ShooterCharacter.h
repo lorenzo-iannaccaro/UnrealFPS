@@ -11,15 +11,14 @@ class UNREALFPS_API AShooterCharacter : public ACharacter
 {
 	GENERATED_BODY()
 
-public:
-	// Sets default values for this character's properties
-	AShooterCharacter();
-
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 public:	
+	// Sets default values for this character's properties
+	AShooterCharacter();
+
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
@@ -27,9 +26,15 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 private:
+
+	UPROPERTY(EditAnywhere)
+	float RotationRate = 50.0f;
+
 	void MoveForward(float AxisValue);
 	void LookUp(float AxisValue);
 	void MoveRight(float AxisValue);
 	void LookRight(float AxisValue);
+	void LookUpRate(float AxisValue);
+	void LookRightRate(float AxisValue);
 
 };
