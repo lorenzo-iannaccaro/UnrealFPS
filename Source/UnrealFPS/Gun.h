@@ -28,5 +28,7 @@ class UNREALFPS_API AGun : public AActor
 			USceneComponent* Root;
 		UPROPERTY(VisibleAnywhere)
 			USkeletalMeshComponent* Mesh;
+		UPROPERTY(EditAnywhere)
+			UParticleSystem* MuzzleFlash;
 
 };
