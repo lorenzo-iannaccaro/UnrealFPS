@@ -17,6 +17,8 @@ AGun::AGun()
 	Mesh = CreateDefaultSubobject<USkeletalMeshComponent>("GunMesh");
 	Mesh->SetupAttachment(Root);
 
+
+
 }
 
 // Called when the game starts or when spawned
@@ -31,5 +33,9 @@ void AGun::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+}
+
+void AGun::PullTrigger() {
+	UE_LOG(LogTemp, Warning, TEXT("The trigger has been pulled"));
 }
 
