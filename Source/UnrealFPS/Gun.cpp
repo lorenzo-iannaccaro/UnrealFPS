@@ -59,7 +59,7 @@ void AGun::PullTrigger() {
 	FHitResult HitResult;
 	bool HaveHit = GetWorld()->LineTraceSingleByChannel(HitResult, OwnerLocation, LinetraceEnd, ECollisionChannel::ECC_GameTraceChannel1);
 	if (HaveHit) {
-		DrawDebugPoint(GetWorld(), HitResult.Location, 25, FColor::Red, false, 3.0f);
+		DrawDebugPoint(GetWorld(), HitResult.Location, 10, FColor::Red, false, 3.0f);
 
 		// Spawn hit surface particle effect
 		FVector ShootDirection = -OwnerRotation.Vector();

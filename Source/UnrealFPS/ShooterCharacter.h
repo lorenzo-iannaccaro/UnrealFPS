@@ -45,6 +45,9 @@ private:
 	UPROPERTY(VisibleAnywhere)
 		float CurrentHealth;
 
+	UFUNCTION(BlueprintPure)
+		bool IsDead() const;
+
 	void MoveForward(float AxisValue);
 	void LookUp(float AxisValue);
 	void MoveRight(float AxisValue);
