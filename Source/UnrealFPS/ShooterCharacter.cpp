@@ -15,6 +15,8 @@ AShooterCharacter::AShooterCharacter()
 void AShooterCharacter::BeginPlay()
 {
 	Super::BeginPlay();
+
+	CurrentHealth = MaxHealth;
 	
 	GetMesh()->HideBoneByName(TEXT("weapon_r"), EPhysBodyOp::PBO_None);
 
@@ -74,5 +76,16 @@ void AShooterCharacter::LookRightRate(float AxisValue) {
 
 void AShooterCharacter::Shoot() {
 	Gun->PullTrigger();
+}
+
+float AShooterCharacter::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser) {
+	
+	float ActualDamage = Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
+	ActualDamage = FMath::Min(CurrentHealth, ActualDamage);
+
+	CurrentHealth -= ActualDamage;
+	UE_LOG(LogTemp, Warning, TEXT("Character health: %f"), CurrentHealth);
+
+	return ActualDamage;
 }
 
