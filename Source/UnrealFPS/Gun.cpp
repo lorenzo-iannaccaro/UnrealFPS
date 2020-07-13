@@ -19,8 +19,6 @@ AGun::AGun()
 	Mesh = CreateDefaultSubobject<USkeletalMeshComponent>("GunMesh");
 	Mesh->SetupAttachment(Root);
 
-
-
 }
 
 // Called when the game starts or when spawned
@@ -39,6 +37,7 @@ void AGun::Tick(float DeltaTime)
 
 void AGun::PullTrigger() {
 
+	// Debug text and camera
 	UE_LOG(LogTemp, Warning, TEXT("The trigger has been pulled"));
 
 	APawn* OwnerPawn = Cast<APawn>(GetOwner());
@@ -50,8 +49,17 @@ void AGun::PullTrigger() {
 	FRotator OwnerRotation;
 	OwnerController->GetPlayerViewPoint(OwnerLocation, OwnerRotation);
 
-	DrawDebugCamera(GetWorld(), OwnerLocation, OwnerRotation, 90, 1, FColor::Yellow, true);
+	DrawDebugCamera(GetWorld(), OwnerLocation, OwnerRotation, 90, 1, FColor::Yellow, false, 3.0f);
 
+	// Debug line trace
+	FVector LinetraceEnd = OwnerLocation + OwnerRotation.Vector() * Range;
+	FHitResult HitResult;
+	bool HaveHit = GetWorld()->LineTraceSingleByChannel(HitResult, OwnerLocation, LinetraceEnd, ECollisionChannel::ECC_GameTraceChannel1);
+	if (HaveHit) {
+		DrawDebugPoint(GetWorld(), HitResult.Location, 25, FColor::Red, false, 3.0f);
+	}
+
+	// Spawn particle effect
 	UGameplayStatics::SpawnEmitterAttached(MuzzleFlash, Mesh, TEXT("MuzzleFlashSocket"));
 
 }

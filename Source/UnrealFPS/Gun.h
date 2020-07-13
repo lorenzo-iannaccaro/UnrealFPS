@@ -30,5 +30,7 @@ class UNREALFPS_API AGun : public AActor
 			USkeletalMeshComponent* Mesh;
 		UPROPERTY(EditAnywhere)
 			UParticleSystem* MuzzleFlash;
+		UPROPERTY(EditAnywhere)
+			float Range = 10000.0f;
 
 };
