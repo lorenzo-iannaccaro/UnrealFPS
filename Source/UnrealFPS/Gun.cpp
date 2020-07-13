@@ -62,12 +62,19 @@ void AGun::PullTrigger() {
 		DrawDebugPoint(GetWorld(), HitResult.Location, 25, FColor::Red, false, 3.0f);
 
 		// Spawn hit surface particle effect
-		FVector BulletSparkleDirection = -OwnerRotation.Vector();
+		FVector ShootDirection = -OwnerRotation.Vector();
 		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), 
 			BulletHitFlash, 
 			HitResult.Location, 
-			BulletSparkleDirection.Rotation()
+			ShootDirection.Rotation()
 		);
+
+		// Inflict damage
+		AActor* HitActor = HitResult.GetActor();
+		if (HitActor) {
+			FDamageEvent PointDamageEvent = FPointDamageEvent(Damage, HitResult, ShootDirection, NULL);
+			HitActor->TakeDamage(Damage, PointDamageEvent, OwnerController, this);
+		}
 	}
 
 

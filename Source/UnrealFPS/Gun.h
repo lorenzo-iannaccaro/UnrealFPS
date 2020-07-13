@@ -34,5 +34,7 @@ class UNREALFPS_API AGun : public AActor
 			UParticleSystem* BulletHitFlash;
 		UPROPERTY(EditAnywhere)
 			float Range = 10000.0f;
+		UPROPERTY(EditAnywhere)
+			float Damage = 10;
 
 };
