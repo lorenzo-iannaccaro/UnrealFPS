@@ -31,6 +31,8 @@ class UNREALFPS_API AGun : public AActor
 		UPROPERTY(EditAnywhere)
 			UParticleSystem* MuzzleFlash;
 		UPROPERTY(EditAnywhere)
+			UParticleSystem* BulletHitFlash;
+		UPROPERTY(EditAnywhere)
 			float Range = 10000.0f;
 
 };

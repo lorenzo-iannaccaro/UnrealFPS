@@ -51,16 +51,25 @@ void AGun::PullTrigger() {
 
 	DrawDebugCamera(GetWorld(), OwnerLocation, OwnerRotation, 90, 1, FColor::Yellow, false, 3.0f);
 
+	// Gun particle effect
+	UGameplayStatics::SpawnEmitterAttached(MuzzleFlash, Mesh, TEXT("MuzzleFlashSocket"));
+
 	// Debug line trace
 	FVector LinetraceEnd = OwnerLocation + OwnerRotation.Vector() * Range;
 	FHitResult HitResult;
 	bool HaveHit = GetWorld()->LineTraceSingleByChannel(HitResult, OwnerLocation, LinetraceEnd, ECollisionChannel::ECC_GameTraceChannel1);
 	if (HaveHit) {
 		DrawDebugPoint(GetWorld(), HitResult.Location, 25, FColor::Red, false, 3.0f);
+
+		// Spawn hit surface particle effect
+		FVector BulletSparkleDirection = -OwnerRotation.Vector();
+		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), 
+			BulletHitFlash, 
+			HitResult.Location, 
+			BulletSparkleDirection.Rotation()
+		);
 	}
 
-	// Spawn particle effect
-	UGameplayStatics::SpawnEmitterAttached(MuzzleFlash, Mesh, TEXT("MuzzleFlashSocket"));
 
 }
 
