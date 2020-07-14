@@ -19,6 +19,8 @@ public:
 
 	virtual void Tick(float DeltaTime) override;
 
+	void FocusAndChase();
+
 protected:
 	virtual void BeginPlay() override;
 
@@ -28,5 +30,8 @@ private:
 	float ChaseRadius = 400.0f;
 
 	APawn* PlayerPawn = nullptr;
+
+	UPROPERTY(EditDefaultsOnly)
+	class UBehaviorTree* BehaviorTree;
 	
 };
