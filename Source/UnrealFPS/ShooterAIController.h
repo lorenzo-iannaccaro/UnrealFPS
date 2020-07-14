@@ -17,7 +17,12 @@ class UNREALFPS_API AShooterAIController : public AAIController
 public:
 	AShooterAIController();
 
+	virtual void Tick(float DeltaTime) override;
+
 protected:
 	virtual void BeginPlay() override;
+
+private:
+	APawn* PlayerPawn = nullptr;
 	
 };

@@ -11,9 +11,18 @@ AShooterAIController::AShooterAIController() {
 void AShooterAIController::BeginPlay() {
 	Super::BeginPlay();
 
-	APawn* PlayerPawn = UGameplayStatics::GetPlayerPawn(GetWorld(), 0);
-	if (PlayerPawn) {
+	PlayerPawn = UGameplayStatics::GetPlayerPawn(GetWorld(), 0);
+	if (PlayerPawn != nullptr) {
 		SetFocus(PlayerPawn);
 	}
 
+}
+
+void AShooterAIController::Tick(float DeltaTime) {
+	Super::Tick(DeltaTime);
+
+	if (PlayerPawn != nullptr) {
+		MoveToActor(PlayerPawn, 500);
+	}
+	
 }
