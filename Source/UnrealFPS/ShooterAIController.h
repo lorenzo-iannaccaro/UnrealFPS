@@ -23,6 +23,10 @@ protected:
 	virtual void BeginPlay() override;
 
 private:
+
+	UPROPERTY(EditDefaultsOnly)
+	float ChaseRadius = 400.0f;
+
 	APawn* PlayerPawn = nullptr;
 	
 };

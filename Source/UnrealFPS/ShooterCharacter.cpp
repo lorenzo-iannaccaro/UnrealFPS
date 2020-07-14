@@ -2,6 +2,7 @@
 
 #include "ShooterCharacter.h"
 #include "Gun.h"
+#include "ShooterAIController.h"
 
 // Sets default values
 AShooterCharacter::AShooterCharacter()
