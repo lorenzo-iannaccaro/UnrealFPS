@@ -13,5 +13,11 @@ UCLASS()
 class UNREALFPS_API AShooterAIController : public AAIController
 {
 	GENERATED_BODY()
+
+public:
+	AShooterAIController();
+
+protected:
+	virtual void BeginPlay() override;
 	
 };
