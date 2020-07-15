@@ -57,7 +57,11 @@ void AGun::PullTrigger() {
 	// Debug line trace
 	FVector LinetraceEnd = OwnerLocation + OwnerRotation.Vector() * Range;
 	FHitResult HitResult;
-	bool HaveHit = GetWorld()->LineTraceSingleByChannel(HitResult, OwnerLocation, LinetraceEnd, ECollisionChannel::ECC_GameTraceChannel1);
+	FCollisionQueryParams Params;
+	Params.AddIgnoredActor(this);
+	Params.AddIgnoredActor(GetOwner());
+	bool HaveHit = GetWorld()->LineTraceSingleByChannel(HitResult, OwnerLocation, LinetraceEnd, ECollisionChannel::ECC_GameTraceChannel1, Params);
+	
 	if (HaveHit) {
 		DrawDebugPoint(GetWorld(), HitResult.Location, 10, FColor::Red, false, 3.0f);
 
