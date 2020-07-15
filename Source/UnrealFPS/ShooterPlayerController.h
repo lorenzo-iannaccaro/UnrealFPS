@@ -21,6 +21,9 @@ private:
 	UPROPERTY(EditAnywhere)
 	float LevelRestartDelay = 5.0f;
 
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<class UUserWidget> LoseScreenClass;
+
 	FTimerHandle TimerHandle;
 
 };
