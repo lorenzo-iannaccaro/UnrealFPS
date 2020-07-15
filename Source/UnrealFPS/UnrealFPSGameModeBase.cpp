@@ -3,3 +3,6 @@
 
 #include "UnrealFPSGameModeBase.h"
 
+void AUnrealFPSGameModeBase::PawnKilled(APawn* PawnKilled) {
+
+}

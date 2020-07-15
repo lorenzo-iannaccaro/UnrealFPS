@@ -4,6 +4,7 @@
 #include "Gun.h"
 #include "ShooterAIController.h"
 #include "Components/CapsuleComponent.h"
+#include "UnrealFPSGameModeBase.h"
 
 // Sets default values
 AShooterCharacter::AShooterCharacter()
@@ -91,6 +92,10 @@ float AShooterCharacter::TakeDamage(float DamageAmount, struct FDamageEvent cons
 	if (IsDead()) {
 		DetachFromControllerPendingDestroy();
 		GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+		AUnrealFPSGameModeBase* GameMode = GetWorld()->GetAuthGameMode<AUnrealFPSGameModeBase>();
+		if (GameMode != nullptr) {
+			GameMode->PawnKilled(this);
+		}
 	}
 
 	return ActualDamage;
