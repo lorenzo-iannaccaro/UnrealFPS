@@ -26,10 +26,12 @@ void AShooterAIController::Tick(float DeltaTime) {
 
 	if (PlayerPawn != nullptr) {
 		if (LineOfSightTo(PlayerPawn)) {
+			SetFocus(PlayerPawn);
 			GetBlackboardComponent()->SetValueAsVector(TEXT("PlayerLocation"), PlayerPawn->GetActorLocation());
 			GetBlackboardComponent()->SetValueAsVector(TEXT("LastKnownPlayerLocation"), PlayerPawn->GetActorLocation());
 		}
 		else {
+			ClearFocus(EAIFocusPriority::LastFocusPriority);
 			GetBlackboardComponent()->ClearValue(TEXT("PlayerLocation"));
 		}
 	}
