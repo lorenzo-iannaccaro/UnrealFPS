@@ -15,4 +15,7 @@ class UNREALFPS_API AKillAllEnemiesGameModeBase : public AUnrealFPSGameModeBase
 	GENERATED_BODY()
 public:
 	void PawnKilled(APawn* PawnKilled) override;
+
+private:
+	void EndGame(bool IsPlayerWinner);
 };
