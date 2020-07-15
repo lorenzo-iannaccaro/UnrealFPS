@@ -29,6 +29,8 @@ public:
 
 	float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser) override;
 
+	void Shoot();
+
 private:
 	UPROPERTY(EditDefaultsOnly)
 		TSubclassOf<AGun> GunClass;
@@ -55,7 +57,5 @@ private:
 
 	void LookUpRate(float AxisValue);
 	void LookRightRate(float AxisValue);
-
-	void Shoot();
 
 };
