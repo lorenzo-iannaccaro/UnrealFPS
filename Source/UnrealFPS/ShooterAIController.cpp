@@ -24,35 +24,5 @@ void AShooterAIController::BeginPlay() {
 void AShooterAIController::Tick(float DeltaTime) {
 	Super::Tick(DeltaTime);
 
-	if (PlayerPawn != nullptr) {
-		if (LineOfSightTo(PlayerPawn)) {
-			SetFocus(PlayerPawn);
-			GetBlackboardComponent()->SetValueAsVector(TEXT("PlayerLocation"), PlayerPawn->GetActorLocation());
-			GetBlackboardComponent()->SetValueAsVector(TEXT("LastKnownPlayerLocation"), PlayerPawn->GetActorLocation());
-		}
-		else {
-			ClearFocus(EAIFocusPriority::LastFocusPriority);
-			GetBlackboardComponent()->ClearValue(TEXT("PlayerLocation"));
-		}
-	}
-
 }
 
-//void AShooterAIController::FocusAndChase()
-//{
-//	if (PlayerPawn != nullptr) {
-//
-//		if (LineOfSightTo(PlayerPawn)) {
-//			SetFocus(PlayerPawn);
-//			MoveToActor(PlayerPawn, ChaseRadius);
-//		}
-//		else {
-//			ClearFocus(EAIFocusPriority::LastFocusPriority);
-//			StopMovement();
-//		}
-//
-//	}
-//	else {
-//		UE_LOG(LogTemp, Error, TEXT("Player pawn not found"));
-//	}
-//}

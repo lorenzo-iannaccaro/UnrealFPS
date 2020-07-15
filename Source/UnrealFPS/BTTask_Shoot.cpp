@@ -13,6 +13,11 @@ EBTNodeResult::Type UBTTask_Shoot::ExecuteTask(UBehaviorTreeComponent& OwnerComp
 	Super::ExecuteTask(OwnerComp, NodeMemory);
 
 	AShooterCharacter* ShooterCharacter = Cast<AShooterCharacter> (OwnerComp.GetAIOwner()->GetPawn());
+	if (ShooterCharacter == nullptr) {
+		UE_LOG(LogTemp, Error, TEXT("Pointer to shooter character is null"));
+		return EBTNodeResult::Failed;
+	}
+
 	ShooterCharacter->Shoot();
 
 	return EBTNodeResult::Succeeded;
