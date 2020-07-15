@@ -90,12 +90,15 @@ float AShooterCharacter::TakeDamage(float DamageAmount, struct FDamageEvent cons
 	UE_LOG(LogTemp, Warning, TEXT("Character health: %f"), CurrentHealth);
 
 	if (IsDead()) {
-		DetachFromControllerPendingDestroy();
-		GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+		
 		AUnrealFPSGameModeBase* GameMode = GetWorld()->GetAuthGameMode<AUnrealFPSGameModeBase>();
 		if (GameMode != nullptr) {
 			GameMode->PawnKilled(this);
 		}
+
+		DetachFromControllerPendingDestroy();
+		GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+
 	}
 
 	return ActualDamage;
