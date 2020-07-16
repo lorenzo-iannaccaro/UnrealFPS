@@ -32,7 +32,10 @@ public:
 	void Shoot();
 
 	UFUNCTION(BlueprintPure)
-		bool IsDead() const;
+	float GetHealthPercentage() const;
+
+	UFUNCTION(BlueprintPure)
+	bool IsDead() const;
 
 private:
 	UPROPERTY(EditDefaultsOnly)
@@ -44,7 +47,7 @@ private:
 	UPROPERTY(EditAnywhere)
 	float RotationRate = 50.0f;
 
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(EditAnywhere)
 		float MaxHealth = 100;
 
 	UPROPERTY(VisibleAnywhere)
