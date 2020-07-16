@@ -23,6 +23,10 @@ class UNREALFPS_API AGun : public AActor
 
 		void PullTrigger();
 
+		void ProjectileLineTrace(FVector& OwnerLocation, FRotator& OwnerRotation);
+
+		void InflictDamage(FHitResult& HitResult, FVector& ShootDirection);
+
 	private:
 		UPROPERTY(VisibleAnywhere)
 			USceneComponent* Root;
@@ -36,5 +40,9 @@ class UNREALFPS_API AGun : public AActor
 			float Range = 10000.0f;
 		UPROPERTY(EditAnywhere)
 			float Damage = 10;
+
+		AController* OwnerController;
+
+		AController* GetOwnerController();
 
 };
