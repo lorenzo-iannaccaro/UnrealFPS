@@ -15,11 +15,18 @@ class UNREALFPS_API AShooterPlayerController : public APlayerController
 	GENERATED_BODY()
 	
 public:
+	virtual void BeginPlay() override;
+
 	void GameHasEnded(class AActor* EndGameFocus = nullptr, bool bIsWinner = false) override;
 
 private:
 	UPROPERTY(EditAnywhere)
 	float LevelRestartDelay = 5.0f;
+
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<class UUserWidget> HUDClass;
+
+	UUserWidget* HUDWidget;
 
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<class UUserWidget> LoseScreenClass;
