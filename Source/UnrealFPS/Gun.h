@@ -32,10 +32,17 @@ class UNREALFPS_API AGun : public AActor
 			USceneComponent* Root;
 		UPROPERTY(VisibleAnywhere)
 			USkeletalMeshComponent* Mesh;
+
 		UPROPERTY(EditAnywhere)
 			UParticleSystem* MuzzleFlash;
 		UPROPERTY(EditAnywhere)
+			USoundBase* MuzzleSound;
+
+		UPROPERTY(EditAnywhere)
 			UParticleSystem* BulletHitFlash;
+		UPROPERTY(EditAnywhere)
+			USoundBase* ImpactSound;
+
 		UPROPERTY(EditAnywhere)
 			float Range = 10000.0f;
 		UPROPERTY(EditAnywhere)
