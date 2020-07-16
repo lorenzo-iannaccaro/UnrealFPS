@@ -24,6 +24,9 @@ private:
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<class UUserWidget> LoseScreenClass;
 
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<class UUserWidget> WinScreenClass;
+
 	FTimerHandle TimerHandle;
 
 };

@@ -21,6 +21,8 @@ public:
 
 	void FocusAndChase();
 
+	bool IsControlledPawnDead() const;
+
 protected:
 	virtual void BeginPlay() override;
 

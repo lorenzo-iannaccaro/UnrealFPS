@@ -5,6 +5,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "BehaviorTree/BehaviorTree.h"
 #include "BehaviorTree/BlackboardComponent.h"
+#include "ShooterCharacter.h"
 
 AShooterAIController::AShooterAIController() {
 
@@ -24,5 +25,14 @@ void AShooterAIController::BeginPlay() {
 void AShooterAIController::Tick(float DeltaTime) {
 	Super::Tick(DeltaTime);
 
+}
+
+bool AShooterAIController::IsControlledPawnDead() const{
+	AShooterCharacter* ControlledPawn = Cast<AShooterCharacter>(GetPawn());
+	if (ControlledPawn != nullptr) {
+		return ControlledPawn->IsDead();
+	}
+
+	return true;	// If cannot find controlled pawn, this counts as dead
 }
 
