@@ -76,7 +76,7 @@ void AGun::ProjectileLineTrace(FVector& OwnerLocation, FRotator& OwnerRotation)
 	// Hit effects
 	if (HaveHit) {
 		// Draw debug hit point
-		DrawDebugPoint(GetWorld(), HitResult.Location, 10, FColor::Red, false, 3.0f);
+		//DrawDebugPoint(GetWorld(), HitResult.Location, 10, FColor::Red, false, 3.0f);
 
 		// Spawn hit surface vfx and sfx
 		FVector ShootDirection = -OwnerRotation.Vector();

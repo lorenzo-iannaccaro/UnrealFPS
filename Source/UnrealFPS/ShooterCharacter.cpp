@@ -12,6 +12,8 @@ AShooterCharacter::AShooterCharacter()
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	// I must call this also here to prevent the case in which IsDead() is called before BeginPlay()
+	CurrentHealth = MaxHealth;
 }
 
 // Called when the game starts or when spawned
@@ -19,6 +21,7 @@ void AShooterCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 
+	// Here I re-do the assignment, because the enemy BP custom MaxHealth value has been updated
 	CurrentHealth = MaxHealth;
 	
 	GetMesh()->HideBoneByName(TEXT("weapon_r"), EPhysBodyOp::PBO_None);
