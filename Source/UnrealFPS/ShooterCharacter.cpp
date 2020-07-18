@@ -5,6 +5,7 @@
 #include "ShooterAIController.h"
 #include "Components/CapsuleComponent.h"
 #include "UnrealFPSGameModeBase.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 AShooterCharacter::AShooterCharacter()
@@ -53,6 +54,8 @@ void AShooterCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 	PlayerInputComponent->BindAxis(TEXT("LookUpRate"), this, &AShooterCharacter::LookUpRate);
 
 	PlayerInputComponent->BindAction(TEXT("PullTrigger"), EInputEvent::IE_Pressed, this, &AShooterCharacter::Shoot);
+
+	PlayerInputComponent->BindAction(TEXT("Exit"), EInputEvent::IE_Pressed, this, &AShooterCharacter::ReturnToMainMenu);
 
 }
 
@@ -113,5 +116,9 @@ bool AShooterCharacter::IsDead() const {
 
 float AShooterCharacter::GetHealthPercentage() const {
 	return CurrentHealth / MaxHealth;
+}
+
+void AShooterCharacter::ReturnToMainMenu() {
+	UGameplayStatics::OpenLevel(GetWorld(), TEXT("MainMenu"));
 }
 

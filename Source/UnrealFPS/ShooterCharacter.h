@@ -61,4 +61,6 @@ private:
 	void LookUpRate(float AxisValue);
 	void LookRightRate(float AxisValue);
 
+	void ReturnToMainMenu();
+
 };
