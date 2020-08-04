@@ -14,6 +14,17 @@ void AShooterPlayerController::BeginPlay() {
 	}
 }
 
+void AShooterPlayerController::PauseGame() {
+	UUserWidget* PauseScreenWidget = CreateWidget(this, PauseScreenClass);
+	if (PauseScreenWidget != nullptr) {
+		PauseScreenWidget->AddToViewport();
+
+		SetInputMode(FInputModeUIOnly());
+		bShowMouseCursor = true;
+		SetPause(true);
+	}
+}
+
 void AShooterPlayerController::GameHasEnded(class AActor* EndGameFocus, bool bIsWinner) {
 	Super::GameHasEnded(EndGameFocus, bIsWinner);
 

@@ -17,6 +17,8 @@ class UNREALFPS_API AShooterPlayerController : public APlayerController
 public:
 	virtual void BeginPlay() override;
 
+	void PauseGame();
+
 	void GameHasEnded(class AActor* EndGameFocus = nullptr, bool bIsWinner = false) override;
 
 private:
@@ -33,6 +35,9 @@ private:
 
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<class UUserWidget> WinScreenClass;
+
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<class UUserWidget> PauseScreenClass;
 
 	FTimerHandle TimerHandle;
 

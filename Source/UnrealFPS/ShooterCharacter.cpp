@@ -6,6 +6,7 @@
 #include "Components/CapsuleComponent.h"
 #include "UnrealFPSGameModeBase.h"
 #include "Kismet/GameplayStatics.h"
+#include "ShooterPlayerController.h"
 
 // Sets default values
 AShooterCharacter::AShooterCharacter()
@@ -54,6 +55,8 @@ void AShooterCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 	PlayerInputComponent->BindAxis(TEXT("LookUpRate"), this, &AShooterCharacter::LookUpRate);
 
 	PlayerInputComponent->BindAction(TEXT("PullTrigger"), EInputEvent::IE_Pressed, this, &AShooterCharacter::Shoot);
+
+	PlayerInputComponent->BindAction(TEXT("PauseGame"), EInputEvent::IE_Pressed, this, &AShooterCharacter::PauseGame);
 
 	PlayerInputComponent->BindAction(TEXT("Exit"), EInputEvent::IE_Pressed, this, &AShooterCharacter::ReturnToMainMenu);
 
@@ -116,6 +119,16 @@ bool AShooterCharacter::IsDead() const {
 
 float AShooterCharacter::GetHealthPercentage() const {
 	return CurrentHealth / MaxHealth;
+}
+
+void AShooterCharacter::PauseGame() {
+	AShooterPlayerController* PlayerController = Cast<AShooterPlayerController>(GetController());
+	if (PlayerController != nullptr) {
+		PlayerController->PauseGame();
+	}
+	else {
+		UE_LOG(LogTemp, Error, TEXT("Cannot find player controller"));
+	}
 }
 
 void AShooterCharacter::ReturnToMainMenu() {
