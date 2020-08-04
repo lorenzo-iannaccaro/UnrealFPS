@@ -4,11 +4,19 @@
 #include "EngineUtils.h"
 #include "ShooterPlayerController.h"
 #include "ShooterAIController.h"
+#include "Kismet/GameplayStatics.h"
+
+void AKillAllEnemiesGameModeBase::BeginPlay() {
+
+	UpdateEnemiesCount();
+
+}
 
 void AKillAllEnemiesGameModeBase::PawnKilled(APawn* PawnKilled) {
 	Super::PawnKilled(PawnKilled);
 
 	UE_LOG(LogTemp, Warning, TEXT("%s has been killed."), *PawnKilled->GetName());
+	UpdateEnemiesCount();
 
 	APlayerController* PlayerController = Cast<APlayerController>(PawnKilled->GetController());
 	if (PlayerController != nullptr) {
@@ -35,5 +43,15 @@ void AKillAllEnemiesGameModeBase::EndGame(bool IsPlayerWinner) {
 			Controller->GameHasEnded(Controller->GetPawn(), false);
 		}
 	}
+}
+
+int AKillAllEnemiesGameModeBase::GetRemainingEnemiesNumber() {
+	return EnemiesCount;
+}
+
+void AKillAllEnemiesGameModeBase::UpdateEnemiesCount() {
+	TArray<AActor*> EnemiesArray;
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ShooterAIControllerClass, EnemiesArray);
+	EnemiesCount = EnemiesArray.Num();
 }
 
