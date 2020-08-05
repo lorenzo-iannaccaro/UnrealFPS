@@ -55,14 +55,10 @@ void AShooterCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 	PlayerInputComponent->BindAxis(TEXT("LookRightRate"), this, &AShooterCharacter::LookRightRate);
 	PlayerInputComponent->BindAxis(TEXT("LookUpRate"), this, &AShooterCharacter::LookUpRate);
 
-	/*PlayerInputComponent->BindAction(TEXT("Zoom"), EInputEvent::IE_Pressed, this, &AShooterCharacter::ZoomIn);
-	PlayerInputComponent->BindAction(TEXT("Zoom"), EInputEvent::IE_Released, this, &AShooterCharacter::ZoomOut);*/
-
 	PlayerInputComponent->BindAction(TEXT("PullTrigger"), EInputEvent::IE_Pressed, this, &AShooterCharacter::Shoot);
 
 	PlayerInputComponent->BindAction(TEXT("PauseGame"), EInputEvent::IE_Pressed, this, &AShooterCharacter::PauseGame);
 
-	//PlayerInputComponent->BindAction(TEXT("Exit"), EInputEvent::IE_Pressed, this, &AShooterCharacter::ReturnToMainMenu);
 
 }
 
@@ -89,16 +85,6 @@ void AShooterCharacter::LookUpRate(float AxisValue) {
 void AShooterCharacter::LookRightRate(float AxisValue) {
 	AddControllerYawInput(AxisValue * RotationRate * GetWorld()->GetDeltaSeconds());
 }
-
-//void AShooterCharacter::ZoomIn() {
-//	UE_LOG(LogTemp, Warning, TEXT("Zoom in"));
-//	RotationRate = ZoomInSensitivity;
-//}
-//
-//void AShooterCharacter::ZoomOut() {
-//	UE_LOG(LogTemp, Warning, TEXT("Zoom out"));
-//	RotationRate = ZoomOutSensitivity;
-//}
 
 void AShooterCharacter::Shoot() {
 	Gun->PullTrigger();

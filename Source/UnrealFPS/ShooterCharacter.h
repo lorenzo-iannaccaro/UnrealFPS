@@ -50,12 +50,6 @@ private:
 	UPROPERTY()
 		AGun* Gun;
 
-	/*UPROPERTY(EditAnywhere)
-	float ZoomOutSensitivity = 100.0f;
-
-	UPROPERTY(EditAnywhere)
-	float ZoomInSensitivity = 50.0f;*/
-
 	UPROPERTY(EditAnywhere)
 		float MaxHealth = 100;
 
@@ -69,9 +63,6 @@ private:
 
 	void LookUpRate(float AxisValue);
 	void LookRightRate(float AxisValue);
-
-	/*void ZoomIn();
-	void ZoomOut();*/
 
 	void PauseGame();
 
