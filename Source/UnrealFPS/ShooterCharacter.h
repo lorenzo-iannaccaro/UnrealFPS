@@ -18,6 +18,12 @@ protected:
 	virtual void BeginPlay() override;
 
 public:	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Sensitivity")
+		float RotationRate = 100.0f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Sensitivity")
+		float MouseRotationRate = 1.0f;
+
 	// Sets default values for this character's properties
 	AShooterCharacter();
 
@@ -44,8 +50,11 @@ private:
 	UPROPERTY()
 		AGun* Gun;
 
+	/*UPROPERTY(EditAnywhere)
+	float ZoomOutSensitivity = 100.0f;
+
 	UPROPERTY(EditAnywhere)
-	float RotationRate = 50.0f;
+	float ZoomInSensitivity = 50.0f;*/
 
 	UPROPERTY(EditAnywhere)
 		float MaxHealth = 100;
@@ -60,6 +69,9 @@ private:
 
 	void LookUpRate(float AxisValue);
 	void LookRightRate(float AxisValue);
+
+	/*void ZoomIn();
+	void ZoomOut();*/
 
 	void PauseGame();
 
